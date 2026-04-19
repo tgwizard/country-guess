@@ -7,10 +7,11 @@
   --accent-2: #fb7185;
   --correct: #34d399;
   --wrong: #f87171;
-  --land: #1f2a4a;
-  --land-edge: #2a3a66;
+  --ocean: #091227;
+  --land: #8494c6;
+  --land-edge: #0c1a3a;
   --focus: #fb7185;
-  --focus-edge: #fda4af;
+  --focus-edge: #fff1f3;
   --panel-bg: rgba(17, 24, 49, 0.82);
   --panel-border: rgba(255, 255, 255, 0.1);
 }
@@ -81,9 +82,12 @@ body {
   min-height: 0;
   position: relative;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  background:
+    radial-gradient(1200px 700px at 50% 30%, #0d1a3a 0%, transparent 70%),
+    var(--ocean);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 20px 60px -30px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 20px 60px -30px rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }
 
@@ -97,22 +101,45 @@ body {
 .country {
   fill: var(--land);
   stroke: var(--land-edge);
-  stroke-width: 0.4;
+  stroke-width: 0.9;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
-  transition: fill 300ms ease, opacity 300ms ease;
+  transition: fill 300ms ease, opacity 300ms ease, stroke 300ms ease;
 }
 .country.active {
   fill: var(--focus);
   stroke: var(--focus-edge);
-  stroke-width: 0.8;
-  filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.55));
+  stroke-width: 1.2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: country-pulse 1.6s ease-in-out infinite;
 }
 .country.reveal {
   fill: var(--correct);
-  stroke: #a7f3d0;
+  stroke: #ecfccb;
+  stroke-width: 1.2;
+  animation: none;
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.6));
 }
 .country.dimmed {
-  opacity: 0.55;
+  opacity: 0.9;
+}
+
+@keyframes country-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(251, 113, 133, 0.55))
+            drop-shadow(0 0 10px rgba(251, 113, 133, 0.35));
+    stroke-width: 1;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.9))
+            drop-shadow(0 0 24px rgba(251, 113, 133, 0.6));
+    stroke-width: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .country.active { animation: none; filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.7)); }
 }
 
 /* Overlay panels (start, game-over, loading, HUD) */
