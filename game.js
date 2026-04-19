@@ -18,13 +18,14 @@ const els = {
   score: document.getElementById("score"),
   lives: document.getElementById("lives"),
   screenStart: document.getElementById("screen-start"),
-  screenPlay: document.getElementById("screen-play"),
   screenOver: document.getElementById("screen-over"),
+  hud: document.getElementById("hud"),
   btnStart: document.getElementById("btn-start"),
   btnAgain: document.getElementById("btn-again"),
   btnSubmit: document.getElementById("btn-submit"),
   btnSkip: document.getElementById("btn-skip"),
   guess: document.getElementById("guess"),
+  guessForm: document.getElementById("guess-form"),
   flag: document.getElementById("flag"),
   feedback: document.getElementById("feedback"),
   finalScore: document.getElementById("final-score"),
@@ -101,6 +102,7 @@ async function renderMap() {
   mapBounds = { x: 0, y: 0, w: 960, h: 500 };
   els.map.setAttribute("viewBox", `0 0 ${mapBounds.w} ${mapBounds.h}`);
   els.loading.hidden = true;
+  els.screenStart.hidden = false;
 }
 
 function focusOnCountry(country, { instant = false } = {}) {
@@ -129,6 +131,10 @@ function focusOnCountry(country, { instant = false } = {}) {
     y -= (newH - h) / 2;
     h = newH;
   }
+
+  // Bias the country toward the upper portion of the visible area so the
+  // bottom HUD (flag + guess input) doesn't sit on top of it.
+  y += h * 0.12;
 
   // Clamp
   if (x < 0) x = 0;
@@ -196,10 +202,10 @@ function markReveal(country) {
 // ---- Game flow ----------------------------------------------------------
 
 function showScreen(which) {
-  for (const key of ["screenStart", "screenPlay", "screenOver"]) {
-    els[key].hidden = els[key] !== els[which];
-  }
-  els.stats.hidden = which !== "screenPlay";
+  els.screenStart.hidden = which !== "start";
+  els.screenOver.hidden = which !== "over";
+  els.hud.hidden = which !== "play";
+  els.stats.hidden = which !== "play";
 }
 
 function updateStats() {
@@ -214,7 +220,7 @@ function startGame() {
   state.score = 0;
   state.mistakes = 0;
   updateStats();
-  showScreen("screenPlay");
+  showScreen("play");
   nextCountry();
 }
 
@@ -279,18 +285,18 @@ function endGame() {
   clearActive();
   resetFocus();
   els.finalScore.textContent = String(state.score);
-  showScreen("screenOver");
+  showScreen("over");
 }
 
 // ---- Wire up ------------------------------------------------------------
 
 els.btnStart.addEventListener("click", startGame);
 els.btnAgain.addEventListener("click", startGame);
-els.btnSubmit.addEventListener("click", submitGuess);
-els.btnSkip.addEventListener("click", skip);
-els.guess.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") submitGuess();
+els.guessForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  submitGuess();
 });
+els.btnSkip.addEventListener("click", skip);
 
 renderMap().catch((err) => {
   console.error(err);

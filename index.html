@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Country Guess</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🌍%3C/text%3E%3C/svg%3E" />
@@ -17,24 +17,27 @@
         </div>
       </header>
 
-      <section id="map-wrap">
+      <section id="stage">
         <svg id="map" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" aria-label="World map"></svg>
-        <div id="loading">Loading map…</div>
-      </section>
 
-      <!-- Start screen -->
-      <section id="screen-start" class="screen">
-        <p class="intro">
-          Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. You get <strong>3</strong> wrong answers before game over.
-        </p>
-        <button id="btn-start" class="btn-primary">Start</button>
-      </section>
+        <div id="loading" class="overlay-panel overlay-center">Loading map…</div>
 
-      <!-- Play screen -->
-      <section id="screen-play" class="screen" hidden>
-        <div class="prompt">
+        <div id="screen-start" class="overlay-panel overlay-center" hidden>
+          <p class="intro">
+            Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. You get <strong>3</strong> wrong answers before game over.
+          </p>
+          <button id="btn-start" class="btn-primary">Start</button>
+        </div>
+
+        <div id="screen-over" class="overlay-panel overlay-center" hidden>
+          <h2>Game over</h2>
+          <p>You scored <strong><span id="final-score">0</span></strong> correct guesses.</p>
+          <button id="btn-again" class="btn-primary">Play again</button>
+        </div>
+
+        <div id="hud" class="overlay-panel overlay-bottom" hidden>
           <div id="flag" class="flag" aria-hidden="true">🏳️</div>
-          <div class="guess-row">
+          <form id="guess-form" class="guess-row" autocomplete="off">
             <input
               id="guess"
               type="text"
@@ -45,18 +48,11 @@
               placeholder="Country name…"
               aria-label="Country name"
             />
-            <button id="btn-submit" class="btn-primary">Guess</button>
-            <button id="btn-skip" class="btn-ghost" title="Give up this country">Skip</button>
-          </div>
+            <button id="btn-submit" type="submit" class="btn-primary">Guess</button>
+            <button id="btn-skip" type="button" class="btn-ghost" title="Give up this country">Skip</button>
+          </form>
           <div id="feedback" class="feedback" aria-live="polite"></div>
         </div>
-      </section>
-
-      <!-- Game over screen -->
-      <section id="screen-over" class="screen" hidden>
-        <h2>Game over</h2>
-        <p>You scored <strong><span id="final-score">0</span></strong> correct guesses.</p>
-        <button id="btn-again" class="btn-primary">Play again</button>
       </section>
     </main>
 
