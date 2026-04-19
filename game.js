@@ -11,14 +11,14 @@ import {
 } from "./countries.js";
 
 const TOPO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
-const MAX_MISTAKES = 3;
 
 const els = {
   map: document.getElementById("map"),
   loading: document.getElementById("loading"),
   stats: document.querySelector(".stats"),
   score: document.getElementById("score"),
-  lives: document.getElementById("lives"),
+  mistakes: document.getElementById("mistakes"),
+  progress: document.getElementById("progress"),
   screenStart: document.getElementById("screen-start"),
   screenOver: document.getElementById("screen-over"),
   hud: document.getElementById("hud"),
@@ -29,6 +29,8 @@ const els = {
   flag: document.getElementById("flag"),
   feedback: document.getElementById("feedback"),
   finalScore: document.getElementById("final-score"),
+  finalTotal: document.getElementById("final-total"),
+  finalMistakes: document.getElementById("final-mistakes"),
   finalDiff: document.getElementById("final-diff"),
 };
 
@@ -212,8 +214,9 @@ function showScreen(which) {
 
 function updateStats() {
   els.score.textContent = String(state.score);
-  const remaining = MAX_MISTAKES - state.mistakes;
-  els.lives.textContent = "❤️".repeat(remaining) + "🖤".repeat(state.mistakes);
+  els.mistakes.textContent = String(state.mistakes);
+  const answered = state.score + state.mistakes;
+  els.progress.textContent = `${answered} / ${state.deck.length}`;
 }
 
 function startGame(difficulty = "normal") {
@@ -229,7 +232,7 @@ function startGame(difficulty = "normal") {
 }
 
 function nextCountry() {
-  if (state.mistakes >= MAX_MISTAKES || state.cursor >= state.deck.length) {
+  if (state.cursor >= state.deck.length) {
     endGame();
     return;
   }
@@ -289,6 +292,8 @@ function endGame() {
   clearActive();
   resetFocus();
   els.finalScore.textContent = String(state.score);
+  els.finalTotal.textContent = String(state.deck.length);
+  els.finalMistakes.textContent = String(state.mistakes);
   els.finalDiff.textContent = DIFFICULTIES[state.difficulty].label;
   showScreen("over");
 }

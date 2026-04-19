@@ -13,7 +13,8 @@
         <h1>🌍 Country Guess</h1>
         <div class="stats" hidden>
           <span class="stat"><span class="label">Score</span><span id="score">0</span></span>
-          <span class="stat"><span class="label">Lives</span><span id="lives">❤️❤️❤️</span></span>
+          <span class="stat"><span class="label">Mistakes</span><span id="mistakes">0</span></span>
+          <span class="stat"><span class="label">Progress</span><span id="progress">0 / 0</span></span>
         </div>
       </header>
 
@@ -24,7 +25,7 @@
 
         <div id="screen-start" class="overlay-panel overlay-center" hidden>
           <p class="intro">
-            Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. You get <strong>3</strong> wrong answers before game over.
+            Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. Keep going until you've seen every country.
           </p>
           <div class="difficulty" role="group" aria-label="Difficulty">
             <button class="btn-primary" data-diff="easy">Easy</button>
@@ -37,8 +38,13 @@
         </div>
 
         <div id="screen-over" class="overlay-panel overlay-center" hidden>
-          <h2>Game over</h2>
-          <p>You scored <strong><span id="final-score">0</span></strong> correct guesses on <strong><span id="final-diff">normal</span></strong>.</p>
+          <h2>All done!</h2>
+          <p>
+            <strong><span id="final-score">0</span></strong> correct out of
+            <strong><span id="final-total">0</span></strong>, with
+            <strong><span id="final-mistakes">0</span></strong> mistakes
+            on <strong><span id="final-diff">normal</span></strong>.
+          </p>
           <div class="difficulty" role="group" aria-label="Difficulty">
             <button class="btn-primary" data-diff="easy">Easy</button>
             <button class="btn-primary" data-diff="normal">Normal</button>

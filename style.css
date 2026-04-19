@@ -10,8 +10,8 @@
   --ocean: #091227;
   --land: #8494c6;
   --land-edge: #0c1a3a;
-  --focus: #fb7185;
-  --focus-edge: #fff1f3;
+  --focus: #ff3d88;
+  --focus-glow: 255, 61, 136;
   --panel-bg: rgba(17, 24, 49, 0.82);
   --panel-border: rgba(255, 255, 255, 0.1);
 }
@@ -103,43 +103,49 @@ body {
   stroke: var(--land-edge);
   stroke-width: 0.9;
   stroke-linejoin: round;
+  shape-rendering: geometricPrecision;
   vector-effect: non-scaling-stroke;
-  transition: fill 300ms ease, opacity 300ms ease, stroke 300ms ease;
+  transition: fill 300ms ease, opacity 300ms ease;
 }
+/* Active country: same dark border as its neighbours, stands out via a
+   big, neon glow rather than a different stroke. Keeping the stroke
+   identical keeps country edges clean and consistent. */
 .country.active {
   fill: var(--focus);
-  stroke: var(--focus-edge);
-  stroke-width: 1.2;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: country-pulse 1.6s ease-in-out infinite;
+  animation: country-pulse 1.4s ease-in-out infinite;
 }
 .country.reveal {
   fill: var(--correct);
-  stroke: #ecfccb;
-  stroke-width: 1.2;
   animation: none;
-  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.6));
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.65))
+          drop-shadow(0 0 22px rgba(52, 211, 153, 0.4));
 }
 .country.dimmed {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 @keyframes country-pulse {
   0%, 100% {
-    filter: drop-shadow(0 0 4px rgba(251, 113, 133, 0.55))
-            drop-shadow(0 0 10px rgba(251, 113, 133, 0.35));
-    stroke-width: 1;
+    filter:
+      drop-shadow(0 0 4px rgba(var(--focus-glow), 0.95))
+      drop-shadow(0 0 10px rgba(var(--focus-glow), 0.6));
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.9))
-            drop-shadow(0 0 24px rgba(251, 113, 133, 0.6));
-    stroke-width: 1.8;
+    filter:
+      drop-shadow(0 0 6px rgba(255, 255, 255, 0.85))
+      drop-shadow(0 0 18px rgba(var(--focus-glow), 1))
+      drop-shadow(0 0 44px rgba(var(--focus-glow), 0.85))
+      drop-shadow(0 0 80px rgba(var(--focus-glow), 0.55));
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .country.active { animation: none; filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.7)); }
+  .country.active {
+    animation: none;
+    filter:
+      drop-shadow(0 0 8px rgba(var(--focus-glow), 1))
+      drop-shadow(0 0 24px rgba(var(--focus-glow), 0.7));
+  }
 }
 
 /* Overlay panels (start, game-over, loading, HUD) */
