@@ -254,12 +254,21 @@ for (const c of COUNTRIES) {
 }
 
 export const DIFFICULTIES = {
-  easy:   { label: "Easy",   maxTier: 1 },
-  normal: { label: "Normal", maxTier: 2 },
-  hard:   { label: "Hard",   maxTier: 3 },
+  easy:   { label: "Easy"   },
+  normal: { label: "Normal" },
+  hard:   { label: "Hard"   },
 };
 
-export function countriesForDifficulty(difficulty) {
-  const d = DIFFICULTIES[difficulty] || DIFFICULTIES.normal;
-  return COUNTRIES.filter((c) => c.playable && c.a2 && c.tier > 0 && c.tier <= d.maxTier);
+// Every difficulty walks through every country; the difficulty only chooses
+// how the deck is grouped before each group is shuffled. Easy ramps up
+// slowly, Normal mixes easy + common, Hard is a single big shuffle.
+export function buildDeck(difficulty) {
+  const byTier = (t) => COUNTRIES.filter((c) => c.playable && c.a2 && c.tier === t);
+  const t1 = byTier(1), t2 = byTier(2), t3 = byTier(3);
+  switch (difficulty) {
+    case "easy":   return [t1, t2, t3];
+    case "normal": return [[...t1, ...t2], t3];
+    case "hard":
+    default:       return [[...t1, ...t2, ...t3]];
+  }
 }

@@ -3,7 +3,7 @@ import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3/+esm";
 import {
   COUNTRIES,
   DIFFICULTIES,
-  countriesForDifficulty,
+  buildDeck,
   flagEmoji,
   matchGuess,
   canonicalName,
@@ -225,7 +225,10 @@ function updateStats() {
 function startGame(difficulty = "normal") {
   if (!DIFFICULTIES[difficulty]) difficulty = "normal";
   state.difficulty = difficulty;
-  state.deck = shuffle(countriesForDifficulty(difficulty));
+  // Build the deck by shuffling each tier group and concatenating.
+  // Easy ramps up (tier 1 → 2 → 3); Normal mixes easy+common, then hard;
+  // Hard is a single big shuffle. Every mode eventually covers every country.
+  state.deck = buildDeck(difficulty).flatMap(shuffle);
   state.cursor = 0;
   state.score = 0;
   state.mistakes = 0;
