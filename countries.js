@@ -218,3 +218,48 @@ export function canonicalName(country) {
 export function swedishName(country) {
   return country.sv[0];
 }
+
+// Difficulty tiers. Tier 1 is a short list of countries a Swedish 10-year-old
+// could reasonably recognise (Nordics + Western Europe). Tier 2 adds the
+// "big, well-known" countries globally. Tier 3 is everything else playable.
+const EASY_A2 = new Set([
+  "SE", "NO", "DK", "FI", "IS",
+  "DE", "FR", "GB", "ES", "IT", "PT",
+  "NL", "BE", "CH", "AT", "IE",
+  "GR", "PL",
+]);
+
+const NORMAL_EXTRA_A2 = new Set([
+  // Americas
+  "US", "CA", "MX", "BR", "AR", "CL", "CO", "PE", "VE", "CU", "JM", "DO", "HT",
+  // Rest of Europe
+  "RU", "UA", "TR", "CZ", "SK", "HU", "RO", "BG", "HR", "SI", "RS", "BY",
+  "EE", "LV", "LT", "LU", "CY",
+  // Asia
+  "CN", "JP", "KR", "KP", "IN", "PK", "BD", "TH", "VN", "ID", "PH", "MY",
+  "MM", "LK", "NP", "AF",
+  // Middle East & Central Asia
+  "SA", "AE", "IL", "IR", "IQ", "LB", "SY", "JO", "YE", "KZ", "UZ", "QA",
+  // Africa
+  "EG", "MA", "TN", "DZ", "LY", "ET", "KE", "ZA", "NG", "GH", "CD",
+  // Oceania
+  "AU", "NZ",
+]);
+
+for (const c of COUNTRIES) {
+  if (!c.playable || !c.a2) { c.tier = 0; continue; }
+  if (EASY_A2.has(c.a2)) c.tier = 1;
+  else if (NORMAL_EXTRA_A2.has(c.a2)) c.tier = 2;
+  else c.tier = 3;
+}
+
+export const DIFFICULTIES = {
+  easy:   { label: "Easy",   maxTier: 1 },
+  normal: { label: "Normal", maxTier: 2 },
+  hard:   { label: "Hard",   maxTier: 3 },
+};
+
+export function countriesForDifficulty(difficulty) {
+  const d = DIFFICULTIES[difficulty] || DIFFICULTIES.normal;
+  return COUNTRIES.filter((c) => c.playable && c.a2 && c.tier > 0 && c.tier <= d.maxTier);
+}

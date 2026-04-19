@@ -26,13 +26,24 @@
           <p class="intro">
             Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. You get <strong>3</strong> wrong answers before game over.
           </p>
-          <button id="btn-start" class="btn-primary">Start</button>
+          <div class="difficulty" role="group" aria-label="Difficulty">
+            <button class="btn-primary" data-diff="easy">Easy</button>
+            <button class="btn-primary" data-diff="normal">Normal</button>
+            <button class="btn-primary" data-diff="hard">Hard</button>
+          </div>
+          <p class="intro hint">
+            Easy: Nordics &amp; Western Europe. Normal: adds the big, well-known countries. Hard: every country on the map.
+          </p>
         </div>
 
         <div id="screen-over" class="overlay-panel overlay-center" hidden>
           <h2>Game over</h2>
-          <p>You scored <strong><span id="final-score">0</span></strong> correct guesses.</p>
-          <button id="btn-again" class="btn-primary">Play again</button>
+          <p>You scored <strong><span id="final-score">0</span></strong> correct guesses on <strong><span id="final-diff">normal</span></strong>.</p>
+          <div class="difficulty" role="group" aria-label="Difficulty">
+            <button class="btn-primary" data-diff="easy">Easy</button>
+            <button class="btn-primary" data-diff="normal">Normal</button>
+            <button class="btn-primary" data-diff="hard">Hard</button>
+          </div>
         </div>
 
         <div id="hud" class="overlay-panel overlay-bottom" hidden>

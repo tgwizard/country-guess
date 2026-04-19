@@ -2,6 +2,8 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3/+esm";
 import {
   COUNTRIES,
+  DIFFICULTIES,
+  countriesForDifficulty,
   flagEmoji,
   matchGuess,
   canonicalName,
@@ -20,8 +22,6 @@ const els = {
   screenStart: document.getElementById("screen-start"),
   screenOver: document.getElementById("screen-over"),
   hud: document.getElementById("hud"),
-  btnStart: document.getElementById("btn-start"),
-  btnAgain: document.getElementById("btn-again"),
   btnSubmit: document.getElementById("btn-submit"),
   btnSkip: document.getElementById("btn-skip"),
   guess: document.getElementById("guess"),
@@ -29,6 +29,7 @@ const els = {
   flag: document.getElementById("flag"),
   feedback: document.getElementById("feedback"),
   finalScore: document.getElementById("final-score"),
+  finalDiff: document.getElementById("final-diff"),
 };
 
 // By-id country lookup (by topojson id OR topoName) → country record.
@@ -54,6 +55,7 @@ const state = {
   score: 0,
   mistakes: 0,
   current: null,
+  difficulty: "normal",
   pathsByCountryNum: new Map(), // key: country.num ?? ("name:" + topoName) → SVGPathElement
   activePath: null,
 };
@@ -214,8 +216,10 @@ function updateStats() {
   els.lives.textContent = "❤️".repeat(remaining) + "🖤".repeat(state.mistakes);
 }
 
-function startGame() {
-  state.deck = shuffle(COUNTRIES.filter((c) => c.playable && c.a2));
+function startGame(difficulty = "normal") {
+  if (!DIFFICULTIES[difficulty]) difficulty = "normal";
+  state.difficulty = difficulty;
+  state.deck = shuffle(countriesForDifficulty(difficulty));
   state.cursor = 0;
   state.score = 0;
   state.mistakes = 0;
@@ -285,13 +289,15 @@ function endGame() {
   clearActive();
   resetFocus();
   els.finalScore.textContent = String(state.score);
+  els.finalDiff.textContent = DIFFICULTIES[state.difficulty].label;
   showScreen("over");
 }
 
 // ---- Wire up ------------------------------------------------------------
 
-els.btnStart.addEventListener("click", startGame);
-els.btnAgain.addEventListener("click", startGame);
+for (const btn of document.querySelectorAll("[data-diff]")) {
+  btn.addEventListener("click", () => startGame(btn.dataset.diff));
+}
 els.guessForm.addEventListener("submit", (e) => {
   e.preventDefault();
   submitGuess();

@@ -143,6 +143,15 @@ body {
 .overlay-center h2 { margin: 0; font-size: 22px; }
 .overlay-center p { margin: 0; color: var(--muted); line-height: 1.5; max-width: 40ch; }
 .overlay-center p strong { color: var(--ink); }
+.overlay-center p.hint { font-size: 13px; opacity: 0.8; }
+
+.difficulty {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.difficulty .btn-primary { min-width: 92px; }
 
 /* HUD at the bottom during play */
 .overlay-bottom {
