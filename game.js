@@ -11,13 +11,14 @@ import {
 } from "./countries.js";
 
 const TOPO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const MAX_MISTAKES = 3;
 
 const els = {
   map: document.getElementById("map"),
   loading: document.getElementById("loading"),
   stats: document.querySelector(".stats"),
   score: document.getElementById("score"),
-  mistakes: document.getElementById("mistakes"),
+  lives: document.getElementById("lives"),
   progress: document.getElementById("progress"),
   screenStart: document.getElementById("screen-start"),
   screenOver: document.getElementById("screen-over"),
@@ -28,6 +29,7 @@ const els = {
   guessForm: document.getElementById("guess-form"),
   flag: document.getElementById("flag"),
   feedback: document.getElementById("feedback"),
+  finalHeading: document.getElementById("final-heading"),
   finalScore: document.getElementById("final-score"),
   finalTotal: document.getElementById("final-total"),
   finalMistakes: document.getElementById("final-mistakes"),
@@ -214,7 +216,8 @@ function showScreen(which) {
 
 function updateStats() {
   els.score.textContent = String(state.score);
-  els.mistakes.textContent = String(state.mistakes);
+  const remaining = Math.max(0, MAX_MISTAKES - state.mistakes);
+  els.lives.textContent = "❤️".repeat(remaining) + "🖤".repeat(MAX_MISTAKES - remaining);
   const answered = state.score + state.mistakes;
   els.progress.textContent = `${answered} / ${state.deck.length}`;
 }
@@ -232,7 +235,7 @@ function startGame(difficulty = "normal") {
 }
 
 function nextCountry() {
-  if (state.cursor >= state.deck.length) {
+  if (state.mistakes >= MAX_MISTAKES || state.cursor >= state.deck.length) {
     endGame();
     return;
   }
@@ -291,6 +294,8 @@ function skip() {
 function endGame() {
   clearActive();
   resetFocus();
+  const ranOut = state.mistakes >= MAX_MISTAKES;
+  els.finalHeading.textContent = ranOut ? "Game over" : "All done!";
   els.finalScore.textContent = String(state.score);
   els.finalTotal.textContent = String(state.deck.length);
   els.finalMistakes.textContent = String(state.mistakes);
