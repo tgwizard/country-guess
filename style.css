@@ -217,21 +217,18 @@ body {
   width: 100%;
   min-width: 0;
 }
-.overlay-bottom #btn-submit,
-.overlay-bottom #btn-skip {
-  height: 100%;
-}
 .overlay-bottom .feedback {
   grid-column: 1 / -1;
   margin: 0;
   text-align: left;
   padding-left: 2px;
-  min-height: 0;
+  /* Reserve the line height so the panel height doesn't jump when a
+     feedback message appears after a guess. */
+  min-height: 1.3em;
   font-size: 13px;
   line-height: 1.3;
   color: var(--muted);
 }
-.overlay-bottom .feedback:empty { display: none; }
 
 input[type="text"] {
   min-width: 0;
