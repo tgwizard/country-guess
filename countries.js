@@ -1,0 +1,220 @@
+// Country data matched to world-atlas@2 topojson ids (ISO 3166-1 numeric, as zero-padded strings).
+// `a2` is ISO 3166-1 alpha-2 (used for flag emoji via regional indicator letters).
+// `en` / `sv` are arrays of accepted names (first entry is canonical).
+// `playable` controls whether the country appears in the guessing rotation.
+
+export const COUNTRIES = [
+  { num: "004", a2: "AF", en: ["Afghanistan"], sv: ["Afghanistan"], playable: true },
+  { num: "008", a2: "AL", en: ["Albania"], sv: ["Albanien"], playable: true },
+  { num: "010", a2: "AQ", en: ["Antarctica"], sv: ["Antarktis"], playable: false },
+  { num: "012", a2: "DZ", en: ["Algeria"], sv: ["Algeriet"], playable: true },
+  { num: "024", a2: "AO", en: ["Angola"], sv: ["Angola"], playable: true },
+  { num: "031", a2: "AZ", en: ["Azerbaijan"], sv: ["Azerbajdzjan"], playable: true },
+  { num: "032", a2: "AR", en: ["Argentina"], sv: ["Argentina"], playable: true },
+  { num: "036", a2: "AU", en: ["Australia"], sv: ["Australien"], playable: true },
+  { num: "040", a2: "AT", en: ["Austria"], sv: ["Österrike"], playable: true },
+  { num: "044", a2: "BS", en: ["Bahamas", "The Bahamas"], sv: ["Bahamas"], playable: true },
+  { num: "050", a2: "BD", en: ["Bangladesh"], sv: ["Bangladesh"], playable: true },
+  { num: "051", a2: "AM", en: ["Armenia"], sv: ["Armenien"], playable: true },
+  { num: "056", a2: "BE", en: ["Belgium"], sv: ["Belgien"], playable: true },
+  { num: "064", a2: "BT", en: ["Bhutan"], sv: ["Bhutan"], playable: true },
+  { num: "068", a2: "BO", en: ["Bolivia"], sv: ["Bolivia"], playable: true },
+  { num: "070", a2: "BA", en: ["Bosnia and Herzegovina", "Bosnia"], sv: ["Bosnien och Hercegovina", "Bosnien"], playable: true },
+  { num: "072", a2: "BW", en: ["Botswana"], sv: ["Botswana"], playable: true },
+  { num: "076", a2: "BR", en: ["Brazil"], sv: ["Brasilien"], playable: true },
+  { num: "084", a2: "BZ", en: ["Belize"], sv: ["Belize"], playable: true },
+  { num: "090", a2: "SB", en: ["Solomon Islands"], sv: ["Salomonöarna"], playable: true },
+  { num: "096", a2: "BN", en: ["Brunei", "Brunei Darussalam"], sv: ["Brunei"], playable: true },
+  { num: "100", a2: "BG", en: ["Bulgaria"], sv: ["Bulgarien"], playable: true },
+  { num: "104", a2: "MM", en: ["Myanmar", "Burma"], sv: ["Myanmar", "Burma"], playable: true },
+  { num: "108", a2: "BI", en: ["Burundi"], sv: ["Burundi"], playable: true },
+  { num: "112", a2: "BY", en: ["Belarus"], sv: ["Belarus", "Vitryssland"], playable: true },
+  { num: "116", a2: "KH", en: ["Cambodia"], sv: ["Kambodja"], playable: true },
+  { num: "120", a2: "CM", en: ["Cameroon"], sv: ["Kamerun"], playable: true },
+  { num: "124", a2: "CA", en: ["Canada"], sv: ["Kanada"], playable: true },
+  { num: "140", a2: "CF", en: ["Central African Republic"], sv: ["Centralafrikanska republiken"], playable: true },
+  { num: "144", a2: "LK", en: ["Sri Lanka"], sv: ["Sri Lanka"], playable: true },
+  { num: "148", a2: "TD", en: ["Chad"], sv: ["Tchad"], playable: true },
+  { num: "152", a2: "CL", en: ["Chile"], sv: ["Chile"], playable: true },
+  { num: "156", a2: "CN", en: ["China"], sv: ["Kina"], playable: true },
+  { num: "158", a2: "TW", en: ["Taiwan"], sv: ["Taiwan"], playable: true },
+  { num: "170", a2: "CO", en: ["Colombia"], sv: ["Colombia"], playable: true },
+  { num: "178", a2: "CG", en: ["Republic of the Congo", "Congo", "Congo-Brazzaville"], sv: ["Kongo-Brazzaville", "Republiken Kongo"], playable: true },
+  { num: "180", a2: "CD", en: ["Democratic Republic of the Congo", "DR Congo", "DRC", "Congo-Kinshasa"], sv: ["Demokratiska republiken Kongo", "Kongo-Kinshasa"], playable: true },
+  { num: "188", a2: "CR", en: ["Costa Rica"], sv: ["Costa Rica"], playable: true },
+  { num: "191", a2: "HR", en: ["Croatia"], sv: ["Kroatien"], playable: true },
+  { num: "192", a2: "CU", en: ["Cuba"], sv: ["Kuba"], playable: true },
+  { num: "196", a2: "CY", en: ["Cyprus"], sv: ["Cypern"], playable: true },
+  { num: "203", a2: "CZ", en: ["Czechia", "Czech Republic"], sv: ["Tjeckien"], playable: true },
+  { num: "204", a2: "BJ", en: ["Benin"], sv: ["Benin"], playable: true },
+  { num: "208", a2: "DK", en: ["Denmark"], sv: ["Danmark"], playable: true },
+  { num: "214", a2: "DO", en: ["Dominican Republic"], sv: ["Dominikanska republiken"], playable: true },
+  { num: "218", a2: "EC", en: ["Ecuador"], sv: ["Ecuador"], playable: true },
+  { num: "222", a2: "SV", en: ["El Salvador"], sv: ["El Salvador"], playable: true },
+  { num: "226", a2: "GQ", en: ["Equatorial Guinea"], sv: ["Ekvatorialguinea"], playable: true },
+  { num: "231", a2: "ET", en: ["Ethiopia"], sv: ["Etiopien"], playable: true },
+  { num: "232", a2: "ER", en: ["Eritrea"], sv: ["Eritrea"], playable: true },
+  { num: "233", a2: "EE", en: ["Estonia"], sv: ["Estland"], playable: true },
+  { num: "238", a2: "FK", en: ["Falkland Islands"], sv: ["Falklandsöarna"], playable: false },
+  { num: "242", a2: "FJ", en: ["Fiji"], sv: ["Fiji"], playable: true },
+  { num: "246", a2: "FI", en: ["Finland"], sv: ["Finland"], playable: true },
+  { num: "250", a2: "FR", en: ["France"], sv: ["Frankrike"], playable: true },
+  { num: "260", a2: "TF", en: ["French Southern Territories"], sv: ["Franska södra territorierna"], playable: false },
+  { num: "262", a2: "DJ", en: ["Djibouti"], sv: ["Djibouti"], playable: true },
+  { num: "266", a2: "GA", en: ["Gabon"], sv: ["Gabon"], playable: true },
+  { num: "268", a2: "GE", en: ["Georgia"], sv: ["Georgien"], playable: true },
+  { num: "270", a2: "GM", en: ["Gambia", "The Gambia"], sv: ["Gambia"], playable: true },
+  { num: "275", a2: "PS", en: ["Palestine", "State of Palestine"], sv: ["Palestina"], playable: true },
+  { num: "276", a2: "DE", en: ["Germany"], sv: ["Tyskland"], playable: true },
+  { num: "288", a2: "GH", en: ["Ghana"], sv: ["Ghana"], playable: true },
+  { num: "300", a2: "GR", en: ["Greece"], sv: ["Grekland"], playable: true },
+  { num: "304", a2: "GL", en: ["Greenland"], sv: ["Grönland"], playable: false },
+  { num: "320", a2: "GT", en: ["Guatemala"], sv: ["Guatemala"], playable: true },
+  { num: "324", a2: "GN", en: ["Guinea"], sv: ["Guinea"], playable: true },
+  { num: "328", a2: "GY", en: ["Guyana"], sv: ["Guyana"], playable: true },
+  { num: "332", a2: "HT", en: ["Haiti"], sv: ["Haiti"], playable: true },
+  { num: "340", a2: "HN", en: ["Honduras"], sv: ["Honduras"], playable: true },
+  { num: "348", a2: "HU", en: ["Hungary"], sv: ["Ungern"], playable: true },
+  { num: "352", a2: "IS", en: ["Iceland"], sv: ["Island"], playable: true },
+  { num: "356", a2: "IN", en: ["India"], sv: ["Indien"], playable: true },
+  { num: "360", a2: "ID", en: ["Indonesia"], sv: ["Indonesien"], playable: true },
+  { num: "364", a2: "IR", en: ["Iran"], sv: ["Iran"], playable: true },
+  { num: "368", a2: "IQ", en: ["Iraq"], sv: ["Irak"], playable: true },
+  { num: "372", a2: "IE", en: ["Ireland"], sv: ["Irland"], playable: true },
+  { num: "376", a2: "IL", en: ["Israel"], sv: ["Israel"], playable: true },
+  { num: "380", a2: "IT", en: ["Italy"], sv: ["Italien"], playable: true },
+  { num: "384", a2: "CI", en: ["Côte d'Ivoire", "Ivory Coast", "Cote d'Ivoire"], sv: ["Elfenbenskusten"], playable: true },
+  { num: "388", a2: "JM", en: ["Jamaica"], sv: ["Jamaica"], playable: true },
+  { num: "392", a2: "JP", en: ["Japan"], sv: ["Japan"], playable: true },
+  { num: "398", a2: "KZ", en: ["Kazakhstan"], sv: ["Kazakstan"], playable: true },
+  { num: "400", a2: "JO", en: ["Jordan"], sv: ["Jordanien"], playable: true },
+  { num: "404", a2: "KE", en: ["Kenya"], sv: ["Kenya"], playable: true },
+  { num: "408", a2: "KP", en: ["North Korea", "Democratic People's Republic of Korea", "DPRK"], sv: ["Nordkorea"], playable: true },
+  { num: "410", a2: "KR", en: ["South Korea", "Republic of Korea", "Korea"], sv: ["Sydkorea", "Korea"], playable: true },
+  { num: "414", a2: "KW", en: ["Kuwait"], sv: ["Kuwait"], playable: true },
+  { num: "417", a2: "KG", en: ["Kyrgyzstan"], sv: ["Kirgizistan"], playable: true },
+  { num: "418", a2: "LA", en: ["Laos"], sv: ["Laos"], playable: true },
+  { num: "422", a2: "LB", en: ["Lebanon"], sv: ["Libanon"], playable: true },
+  { num: "426", a2: "LS", en: ["Lesotho"], sv: ["Lesotho"], playable: true },
+  { num: "428", a2: "LV", en: ["Latvia"], sv: ["Lettland"], playable: true },
+  { num: "430", a2: "LR", en: ["Liberia"], sv: ["Liberia"], playable: true },
+  { num: "434", a2: "LY", en: ["Libya"], sv: ["Libyen"], playable: true },
+  { num: "440", a2: "LT", en: ["Lithuania"], sv: ["Litauen"], playable: true },
+  { num: "442", a2: "LU", en: ["Luxembourg"], sv: ["Luxemburg"], playable: true },
+  { num: "450", a2: "MG", en: ["Madagascar"], sv: ["Madagaskar"], playable: true },
+  { num: "454", a2: "MW", en: ["Malawi"], sv: ["Malawi"], playable: true },
+  { num: "458", a2: "MY", en: ["Malaysia"], sv: ["Malaysia"], playable: true },
+  { num: "466", a2: "ML", en: ["Mali"], sv: ["Mali"], playable: true },
+  { num: "478", a2: "MR", en: ["Mauritania"], sv: ["Mauretanien"], playable: true },
+  { num: "484", a2: "MX", en: ["Mexico"], sv: ["Mexiko"], playable: true },
+  { num: "496", a2: "MN", en: ["Mongolia"], sv: ["Mongoliet"], playable: true },
+  { num: "498", a2: "MD", en: ["Moldova"], sv: ["Moldavien"], playable: true },
+  { num: "499", a2: "ME", en: ["Montenegro"], sv: ["Montenegro"], playable: true },
+  { num: "504", a2: "MA", en: ["Morocco"], sv: ["Marocko"], playable: true },
+  { num: "508", a2: "MZ", en: ["Mozambique"], sv: ["Moçambique", "Mocambique"], playable: true },
+  { num: "512", a2: "OM", en: ["Oman"], sv: ["Oman"], playable: true },
+  { num: "516", a2: "NA", en: ["Namibia"], sv: ["Namibia"], playable: true },
+  { num: "524", a2: "NP", en: ["Nepal"], sv: ["Nepal"], playable: true },
+  { num: "528", a2: "NL", en: ["Netherlands", "The Netherlands", "Holland"], sv: ["Nederländerna", "Holland"], playable: true },
+  { num: "540", a2: "NC", en: ["New Caledonia"], sv: ["Nya Kaledonien"], playable: false },
+  { num: "548", a2: "VU", en: ["Vanuatu"], sv: ["Vanuatu"], playable: true },
+  { num: "554", a2: "NZ", en: ["New Zealand"], sv: ["Nya Zeeland"], playable: true },
+  { num: "558", a2: "NI", en: ["Nicaragua"], sv: ["Nicaragua"], playable: true },
+  { num: "562", a2: "NE", en: ["Niger"], sv: ["Niger"], playable: true },
+  { num: "566", a2: "NG", en: ["Nigeria"], sv: ["Nigeria"], playable: true },
+  { num: "578", a2: "NO", en: ["Norway"], sv: ["Norge"], playable: true },
+  { num: "586", a2: "PK", en: ["Pakistan"], sv: ["Pakistan"], playable: true },
+  { num: "591", a2: "PA", en: ["Panama"], sv: ["Panama"], playable: true },
+  { num: "598", a2: "PG", en: ["Papua New Guinea"], sv: ["Papua Nya Guinea"], playable: true },
+  { num: "600", a2: "PY", en: ["Paraguay"], sv: ["Paraguay"], playable: true },
+  { num: "604", a2: "PE", en: ["Peru"], sv: ["Peru"], playable: true },
+  { num: "608", a2: "PH", en: ["Philippines", "The Philippines"], sv: ["Filippinerna"], playable: true },
+  { num: "616", a2: "PL", en: ["Poland"], sv: ["Polen"], playable: true },
+  { num: "620", a2: "PT", en: ["Portugal"], sv: ["Portugal"], playable: true },
+  { num: "624", a2: "GW", en: ["Guinea-Bissau", "Guinea Bissau"], sv: ["Guinea-Bissau"], playable: true },
+  { num: "626", a2: "TL", en: ["Timor-Leste", "East Timor"], sv: ["Östtimor", "Timor-Leste"], playable: true },
+  { num: "630", a2: "PR", en: ["Puerto Rico"], sv: ["Puerto Rico"], playable: false },
+  { num: "634", a2: "QA", en: ["Qatar"], sv: ["Qatar"], playable: true },
+  { num: "642", a2: "RO", en: ["Romania"], sv: ["Rumänien"], playable: true },
+  { num: "643", a2: "RU", en: ["Russia", "Russian Federation"], sv: ["Ryssland"], playable: true },
+  { num: "646", a2: "RW", en: ["Rwanda"], sv: ["Rwanda"], playable: true },
+  { num: "682", a2: "SA", en: ["Saudi Arabia"], sv: ["Saudiarabien"], playable: true },
+  { num: "686", a2: "SN", en: ["Senegal"], sv: ["Senegal"], playable: true },
+  { num: "688", a2: "RS", en: ["Serbia"], sv: ["Serbien"], playable: true },
+  { num: "694", a2: "SL", en: ["Sierra Leone"], sv: ["Sierra Leone"], playable: true },
+  { num: "703", a2: "SK", en: ["Slovakia"], sv: ["Slovakien"], playable: true },
+  { num: "704", a2: "VN", en: ["Vietnam", "Viet Nam"], sv: ["Vietnam"], playable: true },
+  { num: "705", a2: "SI", en: ["Slovenia"], sv: ["Slovenien"], playable: true },
+  { num: "706", a2: "SO", en: ["Somalia"], sv: ["Somalia"], playable: true },
+  { num: "710", a2: "ZA", en: ["South Africa"], sv: ["Sydafrika"], playable: true },
+  { num: "716", a2: "ZW", en: ["Zimbabwe"], sv: ["Zimbabwe"], playable: true },
+  { num: "724", a2: "ES", en: ["Spain"], sv: ["Spanien"], playable: true },
+  { num: "728", a2: "SS", en: ["South Sudan"], sv: ["Sydsudan"], playable: true },
+  { num: "729", a2: "SD", en: ["Sudan"], sv: ["Sudan"], playable: true },
+  { num: "732", a2: "EH", en: ["Western Sahara"], sv: ["Västsahara"], playable: false },
+  { num: "740", a2: "SR", en: ["Suriname"], sv: ["Surinam"], playable: true },
+  { num: "748", a2: "SZ", en: ["Eswatini", "eSwatini", "Swaziland"], sv: ["Eswatini", "Swaziland"], playable: true },
+  { num: "752", a2: "SE", en: ["Sweden"], sv: ["Sverige"], playable: true },
+  { num: "756", a2: "CH", en: ["Switzerland"], sv: ["Schweiz"], playable: true },
+  { num: "760", a2: "SY", en: ["Syria"], sv: ["Syrien"], playable: true },
+  { num: "762", a2: "TJ", en: ["Tajikistan"], sv: ["Tadzjikistan"], playable: true },
+  { num: "764", a2: "TH", en: ["Thailand"], sv: ["Thailand"], playable: true },
+  { num: "768", a2: "TG", en: ["Togo"], sv: ["Togo"], playable: true },
+  { num: "780", a2: "TT", en: ["Trinidad and Tobago"], sv: ["Trinidad och Tobago"], playable: true },
+  { num: "784", a2: "AE", en: ["United Arab Emirates", "UAE"], sv: ["Förenade Arabemiraten"], playable: true },
+  { num: "788", a2: "TN", en: ["Tunisia"], sv: ["Tunisien"], playable: true },
+  { num: "792", a2: "TR", en: ["Turkey", "Türkiye", "Turkiye"], sv: ["Turkiet"], playable: true },
+  { num: "795", a2: "TM", en: ["Turkmenistan"], sv: ["Turkmenistan"], playable: true },
+  { num: "800", a2: "UG", en: ["Uganda"], sv: ["Uganda"], playable: true },
+  { num: "804", a2: "UA", en: ["Ukraine"], sv: ["Ukraina"], playable: true },
+  { num: "807", a2: "MK", en: ["North Macedonia", "Macedonia"], sv: ["Nordmakedonien", "Makedonien"], playable: true },
+  { num: "818", a2: "EG", en: ["Egypt"], sv: ["Egypten"], playable: true },
+  { num: "826", a2: "GB", en: ["United Kingdom", "UK", "Great Britain", "Britain"], sv: ["Storbritannien", "Förenade kungariket"], playable: true },
+  { num: "834", a2: "TZ", en: ["Tanzania"], sv: ["Tanzania"], playable: true },
+  { num: "840", a2: "US", en: ["United States", "United States of America", "USA", "America"], sv: ["USA", "Förenta staterna"], playable: true },
+  { num: "854", a2: "BF", en: ["Burkina Faso"], sv: ["Burkina Faso"], playable: true },
+  { num: "858", a2: "UY", en: ["Uruguay"], sv: ["Uruguay"], playable: true },
+  { num: "860", a2: "UZ", en: ["Uzbekistan"], sv: ["Uzbekistan"], playable: true },
+  { num: "862", a2: "VE", en: ["Venezuela"], sv: ["Venezuela"], playable: true },
+  { num: "887", a2: "YE", en: ["Yemen"], sv: ["Jemen"], playable: true },
+  { num: "894", a2: "ZM", en: ["Zambia"], sv: ["Zambia"], playable: true },
+  // Countries in the topojson without a numeric id — matched by topojson `properties.name`.
+  { num: null, topoName: "Kosovo", a2: "XK", en: ["Kosovo"], sv: ["Kosovo"], playable: true },
+  { num: null, topoName: "N. Cyprus", a2: null, en: ["Northern Cyprus"], sv: ["Norra Cypern"], playable: false },
+  { num: null, topoName: "Somaliland", a2: null, en: ["Somaliland"], sv: ["Somaliland"], playable: false },
+];
+
+function normalize(s) {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^\p{Letter}\p{Number}]+/gu, " ")
+    .trim();
+}
+
+// Precompute a set of normalized accepted names per country for fast matching.
+for (const c of COUNTRIES) {
+  c.aliases = new Set([...c.en, ...c.sv].map(normalize));
+}
+
+export function flagEmoji(a2) {
+  if (!a2) return "🏳️";
+  const A = 0x1f1e6;
+  const code = a2.toUpperCase();
+  return String.fromCodePoint(A + code.charCodeAt(0) - 65, A + code.charCodeAt(1) - 65);
+}
+
+export function matchGuess(guess, country) {
+  const g = normalize(guess);
+  if (!g) return false;
+  return country.aliases.has(g);
+}
+
+export function canonicalName(country) {
+  return country.en[0];
+}
+
+export function swedishName(country) {
+  return country.sv[0];
+}

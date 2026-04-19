@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Country Guess</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🌍%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="topbar">
+        <h1>🌍 Country Guess</h1>
+        <div class="stats" hidden>
+          <span class="stat"><span class="label">Score</span><span id="score">0</span></span>
+          <span class="stat"><span class="label">Lives</span><span id="lives">❤️❤️❤️</span></span>
+        </div>
+      </header>
+
+      <section id="map-wrap">
+        <svg id="map" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" aria-label="World map"></svg>
+        <div id="loading">Loading map…</div>
+      </section>
+
+      <!-- Start screen -->
+      <section id="screen-start" class="screen">
+        <p class="intro">
+          Guess the country. Type the name in <strong>English</strong> or <strong>Swedish</strong>. You get <strong>3</strong> wrong answers before game over.
+        </p>
+        <button id="btn-start" class="btn-primary">Start</button>
+      </section>
+
+      <!-- Play screen -->
+      <section id="screen-play" class="screen" hidden>
+        <div class="prompt">
+          <div id="flag" class="flag" aria-hidden="true">🏳️</div>
+          <div class="guess-row">
+            <input
+              id="guess"
+              type="text"
+              autocomplete="off"
+              autocapitalize="off"
+              autocorrect="off"
+              spellcheck="false"
+              placeholder="Country name…"
+              aria-label="Country name"
+            />
+            <button id="btn-submit" class="btn-primary">Guess</button>
+            <button id="btn-skip" class="btn-ghost" title="Give up this country">Skip</button>
+          </div>
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Game over screen -->
+      <section id="screen-over" class="screen" hidden>
+        <h2>Game over</h2>
+        <p>You scored <strong><span id="final-score">0</span></strong> correct guesses.</p>
+        <button id="btn-again" class="btn-primary">Play again</button>
+      </section>
+    </main>
+
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
